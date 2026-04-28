@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unacademy GATE CSIT & DA – Notes & Videos</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --bg: #0d0f14;
+    --surface: #161920;
+    --surface2: #1e2230;
+    --accent: #00e5a0;
+    --accent2: #2d81f7;
+    --text: #e8eaf0;
+    --muted: #7a8099;
+    --border: #2a2f45;
+    --tag-bg: #1a2040;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    min-height: 100vh;
+  }
+
+  /* Header */
+  header {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 32px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  header .logo {
+    font-family: 'Space Mono', monospace;
+    font-size: 18px;
+    color: var(--accent);
+    letter-spacing: -0.5px;
+  }
+  header .subtitle {
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  /* Search */
+  .search-bar {
+    margin: 0 auto;
+    max-width: 420px;
+    flex: 1;
+  }
+  .search-bar input {
+    width: 100%;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 9px 14px;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .search-bar input:focus { border-color: var(--accent2); }
+
+  /* Layout */
+  .wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 24px 60px;
+  }
+
+  /* Educator Tabs */
+  .educator-tabs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+  }
+  .tab-btn {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--muted);
+    padding: 9px 18px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .tab-btn:hover { border-color: var(--accent2); color: var(--text); }
+  .tab-btn.active { background: var(--accent2); border-color: var(--accent2); color: #fff; }
+
+  /* Section */
+  .section {
+    margin-bottom: 48px;
+  }
+  .section-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* Table */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--surface);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  thead tr {
+    background: var(--surface2);
+  }
+  th {
+    padding: 13px 16px;
+    text-align: left;
+    font-size: 12px;
+    font-family: 'Space Mono', monospace;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+  }
+  td {
+    padding: 12px 16px;
+    border-top: 1px solid var(--border);
+    font-size: 14px;
+    color: var(--text);
+    vertical-align: middle;
+  }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+
+  /* Badges / Educator Name */
+  .edu-name {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.18s;
+    white-space: nowrap;
+  }
+  .btn-watch {
+    background: rgba(45,129,247,0.12);
+    color: var(--accent2);
+    border: 1px solid rgba(45,129,247,0.3);
+  }
+  .btn-watch:hover { background: var(--accent2); color: #fff; }
+  .btn-download {
+    background: rgba(0,229,160,0.1);
+    color: var(--accent);
+    border: 1px solid rgba(0,229,160,0.25);
+  }
+  .btn-download:hover { background: var(--accent); color: #000; }
+  .btn-folder {
+    background: rgba(255,172,77,0.1);
+    color: #ffac4d;
+    border: 1px solid rgba(255,172,77,0.25);
+  }
+  .btn-folder:hover { background: #ffac4d; color: #000; }
+
+  .btn-group { display: flex; gap: 8px; flex-wrap: wrap; }
+
+  /* Session title */
+  .session-title { font-weight: 400; color: var(--text); }
+
+  /* Educator panel hidden by default */
+  .educator-panel { display: none; }
+  .educator-panel.active { display: block; }
+
+  /* Stats bar */
+  .stats {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+  }
+  .stat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 20px;
+    min-width: 120px;
+  }
+  .stat-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 22px;
+    color: var(--accent);
+  }
+  .stat-label { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  /* Responsive */
+  @media (max-width: 700px) {
+    header { flex-wrap: wrap; padding: 14px 16px; }
+    .wrapper { padding: 20px 12px 48px; }
+    th, td { padding: 10px 10px; font-size: 13px; }
+    .btn { padding: 6px 10px; font-size: 12px; }
+  }
+
+  /* Filter highlight */
+  mark { background: rgba(0,229,160,0.25); color: var(--accent); border-radius: 3px; padding: 0 2px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">GATE CSIT &amp; DA</div>
+    <div class="subtitle">Mission GATE 2026 · Crash Course Series</div>
+  </div>
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search sessions…" oninput="filterRows()">
+  </div>
+</header>
+
+<div class="wrapper">
+
+  <div class="stats">
+    <div class="stat"><div class="stat-num">7</div><div class="stat-label">Educators</div></div>
+    <div class="stat"><div class="stat-num" id="totalCount">0</div><div class="stat-label">Total Sessions</div></div>
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label">Subjects</div></div>
+  </div>
+
+  <div class="educator-tabs" id="tabs">
+    <button class="tab-btn active" onclick="showPanel('all', this)">All</button>
+    <button class="tab-btn" onclick="showPanel('ankit', this)">Ankit Doyla</button>
+    <button class="tab-btn" onclick="showPanel('pankaj', this)">Pankaj Sharma</button>
+    <button class="tab-btn" onclick="showPanel('bharat', this)">Bharat Acharya</button>
+    <button class="tab-btn" onclick="showPanel('sanskriti', this)">Sanskriti Mishra</button>
+    <button class="tab-btn" onclick="showPanel('vishal', this)">Vishal Rawtiya</button>
+    <button class="tab-btn" onclick="showPanel('gurpall', this)">Gurupall Chawla</button>
+  </div>
+
+  <!-- ============ ANKIT DOYLA ============ -->
+  <div class="educator-panel active" id="panel-ankit" data-edu="ankit">
+
+    <div class="section">
+      <div class="section-title">Maha Revision 2026 – Computer Networks</div>
+      <table><thead><tr><th>Educator</th><th>Session</th><th>Links</th></tr></thead><tbody>
+        <tr><td class="edu-name">Ankit Doyla</td><td class="session-title">Computer Network Part 01</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/4xjwwwF8P7Y" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1EzbPqQi8vXYrJfOYQhPrqxRoW5xnE3Gf/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Ankit Doyla</td><td class="session-title">Computer Network Part 02</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/zdbnZZa1FlM" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1DPFyXQBWiCIRuJXXVlWvLBO4PFJhMG0a/view" target="_blank">↓ Notes</a></div></td></tr>
+      </tbody></table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">TOC Crash Course 2026</div>
+      <table><thead><tr><th>#</th><th>Session</th><th>Links</th></tr></thead><tbody>
+        <tr><td class="edu-name">L-01</td><td class="session-title">TOC Crash Course – Intro</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/I60z8_pVWiI" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/11/03110141/L-1-toc-new.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">L-02</td><td class="session-title">Basics of TOC Part 01</td><td><div class="btn-group"><a class="btn btn-watch" href="https://youtube.com/live/XNTATtgClHg" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/11/04105550/L-2-TOC-Pdf.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">L-03</td><td class="session-title">Basics of TOC Part 02</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/xZq4MNeYjV8" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/11/05130637/L-3-TOC-pdf.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">L-04</td><td class="session-title">Introduction to Finite Automata</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/_I6UECcHwcQ" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/11/06131336/L-4-TOC-notes-1.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">L-05</td><td class="session-title">Construction of DFA for Finite Language</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/IyuKVRfSAV0" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/11/07144555/L-5-toc-pdf-notes.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">L-06</td><td class="session-title">Construction of DFA 1</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/9wlBNxsW7xc" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/11/10152900/L-6-toc-notes.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">L-07</td><td class="session-title">Construction of DFA 2</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/pf0r0UFfLmE" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/11/10152852/L-7-toc-notes.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">L-08</td><td class="session-title">Construction of DFA 3</td><td><div class="btn-group"><a class="btn btn-watch" href="https://youtube.com/live/WXTocvlSKyI" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/11/11171257/L-8-toc-notes.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">L-09</td><td class="session-title">Construction of DFA 4</td><td><div class="btn-group"><a class="btn btn-watch" href="https://youtube.com/live/aCTcPvlKyYU" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/11/12161600/L-9-toc-notes.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">L-10</td><td class="session-title">Construction of DFA 5</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/_EbtlGym5XQ" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/11/13163902/L-10-TOC-notes.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">L-11</td><td class="session-title">Language to DFA</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/cas_rl5h6go" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/11/14143600/L-11-toc-notes.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">L-12</td><td class="session-title">CFA Part 01</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/jQjxtQNEsgU" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1Ebruqo2g9TvQetxdLJQrASZUMWOnzRQu/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">L-13</td><td class="session-title">CFA Part 02</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/PX37IgWzCvw" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1aiO6GM5EzS7AxMnbYzbbNFFWRwyEzSXx/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">TOC 14</td><td class="session-title">Complement of FA</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/atLQ1khbLCM" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1SR3lgWrgzMMlj0QJfi6DHuq6dsIqOdiv/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">TOC 15</td><td class="session-title">Non-Deterministic FA</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/d_DDWdvhcdM" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1vaWvBItEle990jP_QQyYbwpBtgZCtxJx/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">TOC 16</td><td class="session-title">NFA with Epsilon Move (ε-NFA)</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/aCm0AT0ynaU" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1xSJgTnSXQ--9r191pmyaBvplTPmq-VBq/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">TOC 17</td><td class="session-title">Moore &amp; Mealy Machine Part 01</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/ER9al9eErUY" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1wzIeVsreu6jVUo4-0onQWRgzLUH3MeIj/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">TOC 18</td><td class="session-title">Moore &amp; Mealy Machine Part 02</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/2ZtzA6J3Xwo" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1EQ7K0GtRWPy2g_HNXezUr0NWJXL5_N8k/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">TOC 19</td><td class="session-title">Moore &amp; Mealy Machine Part 03</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/VSWYC8IrL-w" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1hEB6zDyGhXEOexHYCpAyKD2TfW-WJW-O/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">TOC 20</td><td class="session-title">Minimization of DFA</td><td><div class="btn-group"><a class="btn btn-watch" href="https://youtube.com/live/u6mn2NIG-tI" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1NkY0FtYz0n2I_wtz_Mv00W3JGufAMd9r/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">TOC 21</td><td class="session-title">Finite Automata GATE PYQs</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/dCucK4Uoimc" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1J3T_Qqc10yrDeg7rZyOK4J2JExWYpR86/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">TOC 22</td><td class="session-title">Finite Automata Part 02 GATE PYQs</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/WPKlxYT-YJE" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1TkHxrQRWN_JXkhtGxXgaKgmsxrkV1S0S/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">TOC 23</td><td class="session-title">Finite Automata</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/fHn4s11uP7s" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1vVnuQy5pPXLKNTQjBP4g0clynUw_r4Jt/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">TOC 24</td><td class="session-title">Finite Automata</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/ILttECHnGMY" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1P4YUau0FStuizPRREYZxVmnA0C75UJF7/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">TOC 25</td><td class="session-title">Finite Automata</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/VB4zZ7IE508" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1F-bmsBQHRK960CnPt6jIyjIhKl1GGNV-/view" target="_blank">↓ Notes</a></div></td></tr>
+      </tbody></table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Computer Network Crash Course (44 Days)</div>
+      <div style="margin-bottom:10px">
+        <a class="btn btn-folder" href="https://drive.google.com/drive/folders/1hxZ3m1Xztkguvt8HLRBs_8-4WO9T2eCX" target="_blank">📁 CN DPP Folder</a>
+      </div>
+      <table><thead><tr><th>Day</th><th>Session</th><th>Links</th></tr></thead><tbody>
+        <tr><td class="edu-name">Day 1</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=3SbtNuK5YZ8" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135441/Computer-Network-Day-1-1.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 2</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=rlRO-ZanmRM" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135447/Computer-Network-Day-2.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 3</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=mZx5JtW4uYI" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135455/L-3-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 4</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=F4gTiTZg990" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135503/computer-network-Day-4.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 5</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=Gr13UquaoXc" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135512/L-5-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 6</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=UKp5mLenrJA" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135523/L-06-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 7</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=dgYIzvycwN4" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135533/Lecture-No-07-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 8</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=zNgJ6cy6YH0" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135545/L-08-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 9</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=OXHhI46-j8M" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135556/L-09-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 10</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=8pgvj6CoOPU" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135605/L-10-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 11</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=DJDcKVpjGhk" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135611/L-11-Computer-networks-1.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 12</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=Gtx_elErJEA" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135620/L-12-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 13</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=yqolFpkB-84" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135629/L-13-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 14</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=4G2Tg3-mmI4" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135637/L-14-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 15</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=RADonZkP0KU" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135648/L-15-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 16</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=OviQ9qjNg2A" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135704/L-16-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 17</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=tiwWw13lTpI" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135658/L-17-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 18</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=VaCF_euOXwk" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135713/L-18-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 19</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=ugSRp3SgrQw" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135722/L-19-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 20</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=Ywudq1y7xcI" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135732/L-20-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 21</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=FMowUrUYzBw" target="_blank">▶ Watch</a><td><span style="color:var(--muted);font-size:12px">Notes coming soon</span></td></div></td></tr>
+        <tr><td class="edu-name">Day 22</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=lpWdErfLwGQ" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135740/L-22-computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 23</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=qJ-FlBV7XUo" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135750/L-23-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 24</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=t9COxlOdwek" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135754/L-24-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 25</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=YWnknVgKq30" target="_blank">▶ Watch</a></div></td></tr>
+        <tr><td class="edu-name">Day 26</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=jnJ5osDu6fQ" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135757/L-26-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 27</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=wNmXOt-06xw" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135803/L-27-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 28</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=e1Xdnn4D6tQ" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135807/L-28-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 29</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=sKlkv5cKR2Q" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135815/L-29-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 30</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=1VsGlDjNQ-E" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135827/L-30-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 31</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=2evioZyIcug" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12135838/L-31-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 32</td><td class="session-title">CN – TCP Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=BFYfTenY9JU" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12133019/Computer-Network-TCP.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 33</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=R707nndwWXs" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12132726/L-33-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 34</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=WbR6mAiTlxo" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12132536/L-34-comuter-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 35</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=pPUZmNnEhI8" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12131739/L-35-Computer-network.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 36</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=OUh_MoITQfw" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12124934/L-36-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 37</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=gpIBcqQu0zU" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12124912/L-37-computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 38</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=pRbfgRvtUfg" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12124848/L-38-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 39</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=pRbfgRvtUfg" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12124826/L-39-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 40</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=TGEKEpAbgF0" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12124809/L-40-Computer-networks-1.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 41</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=i-MMQufB9XY" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12124757/L-41-computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 42</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=hMPyoBMCM5I" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12124747/L-42-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 43</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=XJasQKX2fsY" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/12124728/L-43-Computer-networks.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 44</td><td class="session-title">CN Class Notes</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/r6KwKZyB1JA" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/11/06162245/L-44-CN-notes.pdf" target="_blank">↓ PDF</a></div></td></tr>
+      </tbody></table>
+    </div>
+
+  </div><!-- /ankit panel -->
+
+  <!-- ============ PANKAJ SHARMA ============ -->
+  <div class="educator-panel" id="panel-pankaj" data-edu="pankaj">
+
+    <div class="section">
+      <div class="section-title">Maha Revision 2026</div>
+      <table><thead><tr><th>Session</th><th>Links</th></tr></thead><tbody>
+        <tr><td class="session-title">C Programming Part 01</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/uQFgEkPVNYQ" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1Ato4ZZnoevUYprOECgu_VYgfrFP66n3Z/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="session-title">C Programming Part 02</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/kw0PBoqpmB4" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1em26Tib68CN0R6_5iMv71nvk-9YbznGW/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="session-title">Algorithm Maha Revision</td><td><div class="btn-group"><a class="btn btn-watch" href="https://youtube.com/live/vFi4iiqBKOQ" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1Sx1tu0bnN7LtFiNxqJUqG-AAhPSaBSiX/view" target="_blank">↓ Notes</a></div></td></tr>
+      </tbody></table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Algorithms Crash Course 2026</div>
+      <table><thead><tr><th>Day</th><th>Session</th><th>Links</th></tr></thead><tbody>
+        <tr><td class="edu-name">Day 01</td><td class="session-title">Algorithms Day 01</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/o-_z_p7dS_A" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1Bmkfjh21IWCmsXtocm5aKZv1Tz1siw60/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 02</td><td class="session-title">Algorithms Day 02</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/EjUNRTc4iao" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1-35239nlEQPt7DoMkoXKKcogkixd_LHN/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 03</td><td class="session-title">Algorithms Day 03</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/Yfs4EVXYl74" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1xe5y-iwIez970Kp-wGfiQdwiP_NA-EZ5/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 04</td><td class="session-title">Algorithms Day 04</td><td><div class="btn-group"><a class="btn btn-watch" href="https://youtube.com/live/QLG9w4DAIFg" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1ixvZ5LJfUXu0-jaJXacBOl5GptWZ0Tcp/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 05</td><td class="session-title">Algorithms Day 05</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/BMA_aaok58g" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/132fkJgKfWiTWK9NXj0mJ5CLUx_CzzXer/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 06</td><td class="session-title">Algorithms Day 06</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/iFSeErtrk-E" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/18wPIjUuCdEAG9ZV4BYVs3JWblx0qnlSb/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 07</td><td class="session-title">Algorithms Day 07</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/wZelDjl3LmE" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1Qs-vYY2mR8EZLtk-HiCcD4dCiqnYAnb9/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 08</td><td class="session-title">Algorithms Day 08</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/t_06o5t-zEQ" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1PV8MdDyvM_-24O0KKERvswTZ0BHMvToz/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 09</td><td class="session-title">Algorithms Day 09</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/kXXQvRkBjQc" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/14EPRQ98Z2e99fpTYcqPDjIQB0znAUOoZ/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 10</td><td class="session-title">Algorithms Day 10</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/2ZECXmq3_nc" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1xXOL2VLQrf7_OHvVbOBN-BGZ5SeKGBjr/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 11</td><td class="session-title">Algorithms Day 11</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/TGdeRn3Yr4A" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1VX8K4bCC0rzaQyHn6vl5LLVmQa5W8j-b/view" target="_blank">↓ Notes</a></div></td></tr>
+      </tbody></table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Data Structures Crash Course 2026</div>
+      <table><thead><tr><th>Lecture</th><th>Session</th><th>Links</th></tr></thead><tbody>
+        <tr><td class="edu-name">L-01</td><td class="session-title">Data Structure Crash Course Intro</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/GicSPlosq-I" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/11/03110131/ytcrash_011.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">L-02</td><td class="session-title">Arrays Part 01</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/55W7AOLL3-U" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1d_TNwafOnt0KF-QZ6RpJ_eKo2bYS7mNK/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">L-03</td><td class="session-title">Arrays Part 02</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/HDolI680pr8" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/11/05130620/ytcrash03.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">L-04</td><td class="session-title">Linked List Part 01</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/v7emeyxACjE" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/11/06131333/ytcrash04.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">L-05</td><td class="session-title">Linked List Part 02</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/iU-WT3DPSf4" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/11/07144625/ytcrash05.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">L-06</td><td class="session-title">Stack and Queue Part 1</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/VnZPAS0Cfas" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/11/10152856/ytcrash06.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">L-07</td><td class="session-title">Stack and Queue Part 2</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/pf0r0UFfLmE" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/11/10152847/ytcrash07.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">L-08</td><td class="session-title">Trees Part 1</td><td><div class="btn-group"><a class="btn btn-watch" href="https://youtube.com/live/jFbpavkuF6A" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/11/11171302/ytcrash08.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">L-09</td><td class="session-title">Trees Part 2</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/bj3Z5SPF70I" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/11/12161613/ytcrash09.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">L-10</td><td class="session-title">Trees Part 3</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/LYek8Rhl-o0" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/11/13163857/ytcrash10.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">L-11</td><td class="session-title">Hashing</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/rn-Yo162kjU" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/11/14143609/ytcrash11.pdf" target="_blank">↓ PDF</a></div></td></tr>
+      </tbody></table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Extra Notes &amp; Special Sessions</div>
+      <table><thead><tr><th>Session</th><th>Links</th></tr></thead><tbody>
+        <tr><td class="session-title">Sorting Algorithms Part 1 (Ignite Bootcamp)</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/B1HHK3uk2to" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/07/17160011/yt-sorting-_01.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="session-title">C Programming GATE PYQs Part 01</td><td><div class="btn-group"><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/09/17181510/pyqyt1_compressed.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="session-title">Divide &amp; Conquer (23 Jun 25)</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/19qSxBXC9hE" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/06/30144745/divide-and-conquer1.pdf" target="_blank">↓ PDF</a></div></td></tr>
+      </tbody></table>
+    </div>
+
+  </div><!-- /pankaj -->
+
+  <!-- ============ BHARAT ACHARYA ============ -->
+  <div class="educator-panel" id="panel-bharat" data-edu="bharat">
+
+    <div class="section">
+      <div class="section-title">Maha Revision 2026 – COA</div>
+      <table><thead><tr><th>Session</th><th>Links</th></tr></thead><tbody>
+        <tr><td class="session-title">COA Part 01</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/ZeRtG7mJOgI" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1Gb4lRh36hWyVOgRN8Q0acw_hdxewO7fA/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="session-title">COA Part 02</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/O8eCKdHwP4E" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1wpToAQx2xF33mRlj46VNuHH-1DBRAVxL/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="session-title">COA Maha Revision Part 03</td><td><div class="btn-group"><a class="btn btn-watch" href="https://youtube.com/live/iic4hSwnEcc" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/13J8iv9KgjhBukaNTAKE2yfUWCB-X5Ua1/view" target="_blank">↓ Notes</a></div></td></tr>
+      </tbody></table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">COA Crash Course 2026 (11 Days)</div>
+      <table><thead><tr><th>Day</th><th>Session</th><th>Links</th></tr></thead><tbody>
+        <tr><td class="edu-name">Day 01</td><td class="session-title">Number Systems + GATE PYQs</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/ZsXArRJewYo" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/12/01114444/coa-crash-01.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 02</td><td class="session-title">COA Day 02</td><td><div class="btn-group"><a class="btn btn-watch" href="https://youtube.com/live/A3DRuf0By4Q" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1v1gJJ8I44kcdlFcHwlVAvqMHHe6S7b7E/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 03</td><td class="session-title">Instruction Formats + GATE PYQs</td><td><div class="btn-group"><a class="btn btn-watch" href="https://youtube.com/live/zln3lDeU4OE" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1kN7SgTkYYgWOvj1uXM7sBCTrPhIFXNgk/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 04</td><td class="session-title">COA Day 04</td><td><div class="btn-group"><a class="btn btn-watch" href="https://youtube.com/live/ACKVzZxaSG0" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1EfRTaa4FRal54t9A6N6PtcKqpjwOJ0O6/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 05</td><td class="session-title">COA Day 05 P-1</td><td><div class="btn-group"><a class="btn btn-watch" href="https://youtube.com/live/jStOBI-yGEY" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1KGKdyNeOFLuE29I9eTCSVNR_PSClNUCF/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 06</td><td class="session-title">COA Day 06 P-2</td><td><div class="btn-group"><a class="btn btn-watch" href="https://youtube.com/live/vuYL5-eXrsI" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1KGKdyNeOFLuE29I9eTCSVNR_PSClNUCF/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 07</td><td class="session-title">COA Day 07</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/FKJOdCxM-eg" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1LCiAJmU_OigE_9k_lttJkUmJocFr_xLX/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 08</td><td class="session-title">COA Day 08</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/Dh1u27GJLOs" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1wzC-6ZnfXR4L6sYh8Gcm0wS3fwvsKAqf/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 09</td><td class="session-title">COA Day 09</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/ZE2tyBcQeos" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1P9fbdP_ZWU0CQf2vVbPFrYPTEixFt35A/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 10</td><td class="session-title">COA Day 10</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/B2XG4n7ATgw" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/16XpHLX_-N05Ph4bex5UkJS_-NRqdY8j4/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 11</td><td class="session-title">COA Day 11</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/7edz3qEOofQ" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1zadKSHxSfh6OD36BxQGDlvuM87tgr_zl/view" target="_blank">↓ Notes</a></div></td></tr>
+      </tbody></table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">COA Special Notes</div>
+      <table><thead><tr><th>Session</th><th>Links</th></tr></thead><tbody>
+        <tr><td class="session-title">Floating Point GATE PYQs 2017–2025</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/aj8zw-ncLIQ" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/07/07113911/COA-Bharat-Acharya-FP-Numbers-GATE-PYQs-2025-2017.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="session-title">COA Upto FP Numbers July 2025</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/sWqu0jMH2n0" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/07/07155718/COA-Bharat-Acharya-Upto-FP-Numbers-July-2025-1.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="session-title">Pipelining Full Theory</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/W3RO5cDK1WE" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/07/07155717/Pipelining-full-theory-1.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="session-title">Signed Number Representation (Ignite Bootcamp)</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/se3BQNebj80" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/07/17160014/COA-Bharat-Acharya-Signed-Number-Representation.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="session-title">Signed Number GATE PYQs Solved</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/22EJ12GKkh8" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/07/17160012/COA-Bharat-Acharya-GATE-PYQs-Signed-Numbers.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="session-title">Memory Designing with All PYQs</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/aSaZfZWPm7U" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/07/30131215/Bharat-Acharya-COA-Memory-Designing-All-PYQs-solved.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="session-title">Paging – FIFO, LRU, LFU, OPT</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/3399DRs01uU" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/08/01133605/COA-BHARAT-ACHARYA-PAGING.pdf" target="_blank">↓ PDF</a></div></td></tr>
+      </tbody></table>
+    </div>
+
+  </div><!-- /bharat -->
+
+  <!-- ============ SANSKRITI MISHRA ============ -->
+  <div class="educator-panel" id="panel-sanskriti" data-edu="sanskriti">
+
+    <div class="section">
+      <div class="section-title">Gate 2026 Resources</div>
+      <table><thead><tr><th>Session</th><th>Links</th></tr></thead><tbody>
+        <tr><td class="session-title">GATE Exam Hall Checklist</td><td><div class="btn-group"><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2026/02/03113822/GATE_2026_Exam_Hall_Checklist_A4.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="session-title">GATE 2026 DBMS Short Notes</td><td><div class="btn-group"><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2026/01/29184040/IMG_2462.pdf" target="_blank">↓ PDF</a></div></td></tr>
+      </tbody></table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">DBMS Crash Course 2026 (11 Days)</div>
+      <table><thead><tr><th>Day</th><th>Session</th><th>Links</th></tr></thead><tbody>
+        <tr><td class="edu-name">Day 01</td><td class="session-title">Introduction to DBMS</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/HahKx-oB0Hk" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/11/28164611/Untitled-design-15.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 02</td><td class="session-title">FD &amp; Normalization</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=hAL-phSTig0" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/12/01153640/Untitled20design.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 03</td><td class="session-title">Normalization</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/watch?v=WsKXBwGsFAI" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/12/01153634/Untitled20design-2.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 04</td><td class="session-title">DBMS Day 04</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/7-1iveDyzA4" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1m5m5D6ye3FhJtqVleS4yNlX7Txzcho5W/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 05</td><td class="session-title">DBMS Day 05</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/aHuXvU3qPA0" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1T42S3X8sOWzMp7JQQjRM4LnC63f7I8Ie/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 06</td><td class="session-title">DBMS Day 06</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/MLk_fFN2gRs" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1ICS_2W6GPL9r1QmqdyQqTsOCQnv3-hsO/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 07</td><td class="session-title">DBMS Day 07</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/hfEbEs5dGLY" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1OpoUcf2ARhbt4YaDWpC__13ROc7mLhkU/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 08</td><td class="session-title">DBMS Day 08</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/H4MB04s8mBQ" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1tlOfCBHR1wFdJbBFA8QqrI2MxFEGaVl2/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 09</td><td class="session-title">DBMS Day 09</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/UoOM5e57_wI" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://static.uacdn.net/wp-content/uploads/sites/2/2025/12/15160129/LECT-9.pdf" target="_blank">↓ PDF</a></div></td></tr>
+        <tr><td class="edu-name">Day 10</td><td class="session-title">DBMS Day 10</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/5nlga-aK30Q" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1709gzO2gy20SFysqW-CeHuUgDx_6K-t6/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 11</td><td class="session-title">DBMS Day 11</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/FWPdzXsYF-A" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1kvBhff_zHLf8pHSUzFVZLHrMPupHghfY/view" target="_blank">↓ Notes</a></div></td></tr>
+      </tbody></table>
+    </div>
+
+  </div><!-- /sanskriti -->
+
+  <!-- ============ VISHAL RAWTIYA ============ -->
+  <div class="educator-panel" id="panel-vishal" data-edu="vishal">
+
+    <div class="section">
+      <div class="section-title">DBMS Marathon</div>
+      <div style="margin-bottom:10px">
+        <a class="btn btn-folder" href="https://drive.google.com/drive/folders/1rWS2ujRfEuVoOEBF5_sIvriXqe1qNBFb" target="_blank">📁 DBMS Notes Folder</a>
+      </div>
+      <table><thead><tr><th>Session</th><th>Links</th></tr></thead><tbody>
+        <tr><td class="session-title">DBMS Marathon P-1</td><td><div class="btn-group"><a class="btn btn-watch" href="https://youtube.com/live/BAxhNwm8Lyg" target="_blank">▶ Watch</a></div></td></tr>
+        <tr><td class="session-title">DBMS Marathon P-2</td><td><div class="btn-group"><a class="btn btn-watch" href="https://youtube.com/live/xuKmVsZpsvo" target="_blank">▶ Watch</a></div></td></tr>
+        <tr><td class="session-title">DBMS Marathon P-3</td><td><div class="btn-group"><a class="btn btn-watch" href="https://youtube.com/live/i_luCckV0P8" target="_blank">▶ Watch</a></div></td></tr>
+        <tr><td class="session-title">DBMS Marathon P-4</td><td><div class="btn-group"><a class="btn btn-watch" href="https://youtube.com/live/nCwsg2_Mntk" target="_blank">▶ Watch</a></div></td></tr>
+      </tbody></table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Discrete Mathematics Crash Course (10 Days)</div>
+      <table><thead><tr><th>Day</th><th>Session</th><th>Links</th></tr></thead><tbody>
+        <tr><td class="edu-name">Day 01</td><td class="session-title">Discrete Mathematics 01</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/CaKNf0fL6Fo" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1GDxEQQ_mnx_9fLIzKCDMXRCZtgv_XNGq/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 02</td><td class="session-title">Discrete Mathematics 02</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/KL1yK-0dpF0" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1zh56Qi-KASThnCRjwYgOq1Qi6tOIS3m4/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 03</td><td class="session-title">Discrete Mathematics 03</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/kjOLUk2ZSO8" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1Dr_oKCAMGhuWjXljfgaQcVo5YEHeDozI/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 04</td><td class="session-title">Discrete Mathematics 04</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/9VUe25gdFoI" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1-NHlwURfXbuHpvgz3pfXry2cWRUTeIIM/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 05</td><td class="session-title">Discrete Mathematics 05</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/x8p3wWXdhDI" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1q65YYO1WFdHhXO5v6Tw0Lx3TQ9pmfnC9/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 06</td><td class="session-title">Discrete Mathematics 06</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/PJcAJtHmO0Y" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1y0DgOv0rlSSg_h-UNFHW--sANqTaSPcd/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 07</td><td class="session-title">Discrete Mathematics 07</td><td><div class="btn-group"><a class="btn btn-watch" href="https://youtube.com/live/InJ9x7vFoI4" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1SwPpl4kZ1auozXEJvufk4rMeHf2P_zKj/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 08</td><td class="session-title">Discrete Mathematics 08</td><td><div class="btn-group"><a class="btn btn-watch" href="https://youtube.com/live/1UuQx4D7Gq4" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1Zk7F_o8r3SbJw-vtuK1ItHxj-nu4kSpJ/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 09</td><td class="session-title">Discrete Mathematics 09</td><td><div class="btn-group"><a class="btn btn-watch" href="https://youtube.com/live/Cpuqn6D83zU" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/163nrB9_yRxYl7EMvLBIfDv8p0u-p2aFU/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="edu-name">Day 10</td><td class="session-title">Discrete Mathematics 10</td><td><div class="btn-group"><a class="btn btn-watch" href="https://youtube.com/live/bOgKgzsNfmc" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1Xq5DjCLoBrfSeCobQC_0Bgn5Y7QdkA43/view" target="_blank">↓ Notes</a></div></td></tr>
+      </tbody></table>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Maha Revision – DM &amp; OS</div>
+      <table><thead><tr><th>Session</th><th>Links</th></tr></thead><tbody>
+        <tr><td class="session-title">Discrete Mathematics Maha Revision Part 01</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/JANCFdtEKaA" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1COxv9Tyu1fmPnEEEPGTZXPMPQ_zov9Bg/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="session-title">Discrete Mathematics Maha Revision Part 02</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/AffnVzUSnNs" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1YdO-3RqK3ZLpPNx3UFKwGlFctZe4fks6/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="session-title">Discrete Mathematics Maha Revision Part 03</td><td><div class="btn-group"><a class="btn btn-watch" href="https://youtube.com/live/LaIeBr1dYL4" target="_blank">▶ Watch</a></div></td></tr>
+        <tr><td class="session-title">Operating System Maha Revision P-1</td><td><div class="btn-group"><a class="btn btn-watch" href="https://youtube.com/live/wD8Gy8Ch0IY" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1aSW_m_0sdMwgWcdrQWnGry2TS1ucZ7MJ/view" target="_blank">↓ Notes</a></div></td></tr>
+      </tbody></table>
+    </div>
+
+  </div><!-- /vishal -->
+
+  <!-- ============ GURUPALL CHAWLA ============ -->
+  <div class="educator-panel" id="panel-gurpall" data-edu="gurpall">
+
+    <div class="section">
+      <div class="section-title">Aptitude Crash Course</div>
+      <table><thead><tr><th>Session</th><th>Links</th></tr></thead><tbody>
+        <tr><td class="session-title">Aptitude Part 01</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/c8DcdOQQeS0" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1KL3bgY7Q0FBwVuG6I7jFijYXjzeo84A3/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="session-title">Aptitude Part 02</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/Oz3BffG-n5I" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/1fXmDWFEDz2hNEuShuLG8462bN13aC8mg/view" target="_blank">↓ Notes</a></div></td></tr>
+        <tr><td class="session-title">Aptitude Part 03</td><td><div class="btn-group"><a class="btn btn-watch" href="https://www.youtube.com/live/SoQubsFyv9A" target="_blank">▶ Watch</a><a class="btn btn-download" href="https://drive.google.com/file/d/16DtzUEnDBAdT3z9X_hushGLBoOY4yAui/view" target="_blank">↓ Notes</a></div></td></tr>
+      </tbody></table>
+    </div>
+
+  </div><!-- /gurpall -->
+
+</div><!-- /wrapper -->
+
+<script>
+  // Count rows
+  const allRows = document.querySelectorAll('tbody tr');
+  document.getElementById('totalCount').textContent = allRows.length;
+
+  // Tab switching
+  function showPanel(edu, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    if (edu === 'all') {
+      document.querySelectorAll('.educator-panel').forEach(p => p.classList.add('active'));
+    } else {
+      document.querySelectorAll('.educator-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-' + edu).classList.add('active');
+    }
+    filterRows();
+  }
+
+  // Search
+  function filterRows() {
+    const q = document.getElementById('searchInput').value.toLowerCase().trim();
+    document.querySelectorAll('tbody tr').forEach(row => {
+      const text = row.textContent.toLowerCase();
+      row.style.display = (!q || text.includes(q)) ? '' : 'none';
+    });
+  }
+</script>
+
+</body>
+</html>
